@@ -90,9 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Testimonials Slider (Swiper.js) ---
     const testimonialsSlider = document.querySelector('.testimonials-slider');
-    // Only run this code if the slider exists on the page
+    // Only run this code if the slider exists on the page.
+    // This prevents errors on pages without the slider, like services.html.
     if (testimonialsSlider) {
-        const swiper = new Swiper('.testimonials-slider', {
+        new Swiper('.testimonials-slider', {
             loop: true,
             autoplay: {
                 delay: 5000,
