@@ -39,6 +39,8 @@ body {
     color: var(--color-text);
     line-height: 1.6;
     padding-top: var(--header-height);
+    padding-bottom: 90px;
+    /* Added to prevent content from being hidden by fixed footer */
 }
 
 h1,
@@ -530,7 +532,8 @@ a.glightbox:hover img {
 
 .scroll-to-top {
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
+    /* Adjusted to be above the fixed footer (approx. 90px height + 10px gap) */
     right: 20px;
     background-color: var(--color-primary);
     color: var(--color-text-light);
@@ -579,6 +582,16 @@ a.glightbox:hover img {
    ============================ */
 
 footer {
+    position: fixed;
+    /* Make the footer stick to the bottom */
+    bottom: 0;
+    /* Position it at the very bottom */
+    left: 0;
+    /* Align to the left edge */
+    width: 100%;
+    /* Make it span the full width */
+    z-index: 90;
+    /* Ensure it's above most content, but below the header */
     background-color: var(--color-primary);
     color: var(--color-text-light);
     text-align: center;
