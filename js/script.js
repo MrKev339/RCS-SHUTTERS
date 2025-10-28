@@ -4,15 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if it's a touch device
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    if (cursorDot && !isTouchDevice) {
-        // If it's a desktop, make the cursor follow the mouse
-        window.addEventListener('mousemove', (e) => {
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-        });
-    } else if (cursorDot) {
-        // If it's a touch device, hide the custom cursor completely
-        cursorDot.style.display = 'none';
+    if (cursorDot) {
+        if (!isTouchDevice) {
+            // If it's a desktop, make the cursor follow the mouse
+            window.addEventListener('mousemove', (e) => {
+                // Using transform for better performance than left/top
+                cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
+        } else {
+            // If it's a touch device, hide the custom cursor completely
+            cursorDot.style.display = 'none';
+        }
     }
 
     // --- Hero Slideshow (Homepage Only) ---
@@ -26,7 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         };
-        setInterval(nextSlide, slideInterval);
+        // The slideshow should start after the initial page content is loaded
+        setTimeout(() => {
+            setInterval(nextSlide, slideInterval);
+        }, slideInterval); // Wait for the first slide to show for the interval duration
     }
 
     // --- Contact Form AJAX Submission ---
@@ -66,7 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Fade-in Section on Scroll ---
+    // --- Staggered Animation for Service Page Cards ---
+    const servicePageCards = document.querySelectorAll('.service-page-card');
+    if (servicePageCards.length > 0) {
+        servicePageCards.forEach((card, index) => {
+            // Add the fade-in class to the parent column div
+            if (card.parentElement) {
+                card.parentElement.classList.add('fade-in-section');
+                // Set a staggered delay for the animation
+                card.parentElement.style.transitionDelay = `${index * 0.1}s`;
+            }
+        });
+    }
+
+    // --- Fade-in Section on Scroll (Intersection Observer) ---
     const sectionsToFade = document.querySelectorAll('.fade-in-section');
     if (sectionsToFade.length > 0) {
         const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -93,20 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Staggered Animation for Service Page Cards ---
-    const servicePageCards = document.querySelectorAll('.service-page-card');
-    if (servicePageCards.length > 0) {
-        servicePageCards.forEach((card, index) => {
-            card.parentElement.classList.add('fade-in-section');
-            card.parentElement.style.animationDelay = `${(index * 0.1) + 0.1}s`;
-        });
-    }
-
     // --- Testimonials Slider (Swiper.js) ---
     const testimonialsSlider = document.querySelector('.testimonials-slider');
     // Only run this code if the slider exists on the page.
-    // This prevents errors on pages without the slider, like services.html.
     if (testimonialsSlider) {
+        // Swiper is assumed to be loaded globally
         new Swiper('.testimonials-slider', {
             loop: true,
             autoplay: {
@@ -144,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Scroll-to-Top Button ---
+    // --- Scroll-to-Top Button (FIXED) ---
     const scrollTopBtn = document.querySelector('.scroll-to-top');
     if (scrollTopBtn) {
         const handleScroll = () => {
@@ -156,14 +165,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         window.addEventListener('scroll', handleScroll);
+
+        // **FIX:** Add click handler to actually scroll to the top
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 
     // --- Footer Visibility on Scroll to Bottom ---
     const footer = document.querySelector('footer');
     if (footer) {
         const handleFooterVisibility = () => {
-            // Check if user has scrolled to the bottom of the page
-            // A small buffer (e.g., 5px) helps on some devices
+            // Check if user has scrolled near the bottom of the page
             if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
                 footer.classList.add('visible');
             } else {
@@ -176,6 +193,4 @@ document.addEventListener('DOMContentLoaded', () => {
         // Also run after all images have loaded to get the correct page height
         window.addEventListener('load', handleFooterVisibility);
     }
-
-
 });
