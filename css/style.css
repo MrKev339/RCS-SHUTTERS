@@ -327,6 +327,40 @@ img {
 }
 
 
+/* Slideshow Navigation Buttons */
+
+.slide-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.slide-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.slide-nav-btn.prev {
+    left: 20px;
+}
+
+.slide-nav-btn.next {
+    right: 20px;
+}
+
+
 /* Gradient Text Effect */
 
 .gradient-text {

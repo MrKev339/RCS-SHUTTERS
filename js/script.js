@@ -20,18 +20,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Hero Slideshow (Homepage Only) ---
     const slides = document.querySelectorAll('.slide');
     if (slides.length > 0) {
+        const prevBtn = document.getElementById('slide-prev');
+        const nextBtn = document.getElementById('slide-next');
         let currentSlide = 0;
         const slideInterval = 5000; // Time per slide in milliseconds (5 seconds)
+        let autoSlideInterval;
 
-        const nextSlide = () => {
+        const goToSlide = (slideIndex) => {
             slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
+            currentSlide = (slideIndex + slides.length) % slides.length; // Wrap around for negative numbers
             slides[currentSlide].classList.add('active');
         };
-        // The slideshow should start after the initial page content is loaded
-        setTimeout(() => {
-            setInterval(nextSlide, slideInterval);
-        }, slideInterval); // Wait for the first slide to show for the interval duration
+
+        const nextSlide = () => goToSlide(currentSlide + 1);
+        const prevSlide = () => goToSlide(currentSlide - 1);
+
+        const startAutoSlide = () => {
+            autoSlideInterval = setInterval(nextSlide, slideInterval);
+        };
+
+        const resetAutoSlide = () => {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        };
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetAutoSlide();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetAutoSlide();
+            });
+        }
+
+        // Start the automatic slideshow
+        startAutoSlide();
     }
 
     // --- Contact Form AJAX Submission ---
