@@ -213,15 +213,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Footer Visibility on Scroll to Bottom ---
     const footer = document.querySelector('footer');
     if (footer) {
-        // On mobile, the footer is fixed and appears on scroll. On desktop, it's at the bottom.
-        // This logic works for both: it shows the footer after scrolling down a bit.
-        const handleScroll = () => {
-            if (window.scrollY > 300) {
-                footer.classList.add('visible');
+        const handleFooterVisibility = () => {
+            const isMobileView = window.innerWidth <= 768; // Define mobile breakpoint
+
+            if (isMobileView) {
+                // Mobile-specific sticky footer logic: show after scrolling down a bit
+                if (window.scrollY > 100) { // Lower threshold for mobile
+                    footer.classList.add('visible');
+                } else {
+                    footer.classList.remove('visible');
+                }
             } else {
-                footer.classList.remove('visible');
+                // Desktop-specific scroll-reveal footer logic
+                // Show when the footer enters the viewport or after significant scroll
+                const footerRect = footer.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                if (footerRect.top < viewportHeight - 50 || window.scrollY > 500) { // Adjust 500px threshold as needed
+                    footer.classList.add('visible');
+                } else {
+                    footer.classList.remove('visible');
+                }
             }
         };
-        window.addEventListener('scroll', handleScroll);
+
+        window.addEventListener('scroll', handleFooterVisibility);
+        handleFooterVisibility(); // Call once on load to set initial state
     }
 });
