@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleFooterVisibility = () => {
             // Check if user has scrolled to the bottom of the page
             // A small buffer (e.g., 5px) helps on some devices
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+            if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
                 footer.classList.add('visible');
             } else {
                 footer.classList.remove('visible');
