@@ -75,9 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- GLightbox Initialization ---
-    const lightbox = GLightbox({
-        selector: '.glightbox'
-    });
+    // Only initialize GLightbox if the function is available (meaning the script loaded)
+    if (typeof GLightbox === 'function') {
+        GLightbox({
+            selector: '.glightbox'
+        });
+    }
 
     // --- Staggered Animation for Service Page Cards ---
     const servicePageCards = document.querySelectorAll('.service-page-card');
