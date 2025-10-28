@@ -143,5 +143,21 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', handleScroll);
     }
 
+    // --- Footer Visibility on Scroll to Bottom ---
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const handleFooterVisibility = () => {
+            // Check if user has scrolled to the bottom of the page
+            // A small buffer (e.g., 5px) helps on some devices
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+        };
+        window.addEventListener('scroll', handleFooterVisibility);
+        handleFooterVisibility(); // Run on page load in case the page is not scrollable
+    }
+
 
 });
