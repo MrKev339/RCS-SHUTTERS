@@ -597,6 +597,19 @@ footer.visible {
     transform: translateY(0);
 }
 
+footer a {
+    color: var(--color-text-light);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
 
 /* ============================
    9. RESPONSIVE - TABLET & MOBILE
