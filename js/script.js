@@ -42,6 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Preloader ---
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+        window.addEventListener('load', () => {
+            preloader.style.opacity = '0';
+            preloader.addEventListener('transitionend', () => preloader.remove());
+        });
+    }
+
     // --- Fade-in Section on Scroll ---
     const sectionsToFade = document.querySelectorAll('.fade-in-section');
     if (sectionsToFade.length > 0) {
@@ -58,19 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sectionsToFade.forEach(section => {
             sectionObserver.observe(section);
-        });
-    }
-
-    // --- Preloader ---
-    const preloader = document.querySelector('.preloader');
-    if (preloader) {
-        document.body.classList.add('loading');
-        window.addEventListener('load', () => {
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => {
-                preloader.style.display = 'none';
-                document.body.classList.remove('loading');
-            });
         });
     }
 
