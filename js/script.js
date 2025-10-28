@@ -1,16 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Custom Cursor (Desktop Only) ---
     const cursorDot = document.querySelector('.cursor-dot');
-    // Check if it's not a touch device before running cursor logic
+    // Check if it's a touch device
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     if (cursorDot && !isTouchDevice) {
+        // If it's a desktop, make the cursor follow the mouse
         window.addEventListener('mousemove', (e) => {
             cursorDot.style.left = `${e.clientX}px`;
             cursorDot.style.top = `${e.clientY}px`;
         });
     } else if (cursorDot) {
-        cursorDot.style.display = 'none'; // Hide cursor on touch devices
+        // If it's a touch device, hide the custom cursor completely
+        cursorDot.style.display = 'none';
     }
 
     // --- Hero Slideshow (Homepage Only) ---
