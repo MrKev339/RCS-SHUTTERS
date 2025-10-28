@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
 
+            // Get references to the button and the new status message element
+            const submitButton = this.querySelector('button[type="submit"]');
+            const statusMessage = document.getElementById('form-status-message');
+
+            // --- Provide immediate user feedback on button and new message area ---
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            statusMessage.style.display = 'block'; // Show the message area
+            statusMessage.textContent = 'Please wait, your message is being sent...'; // Initial sending message
+            statusMessage.style.color = '#007bff'; // A neutral color for "sending"
+
             const formData = new FormData(this);
             const action = this.getAttribute('action');
 
@@ -34,13 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => {
                     if (response.ok) {
                         // Redirect to a thank-you page on successful submission
+                        statusMessage.textContent = 'Message sent successfully! Redirecting...';
+                        statusMessage.style.color = '#28a745'; // Green for success
                         window.location.href = 'thank-you.html';
                     } else {
                         // Handle errors if the submission fails
-                        alert('There was a problem with your submission. Please try again.');
+                        // Re-enable the button and restore its text
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send Message';
+                        statusMessage.textContent = 'There was a problem with your submission. Please try again.';
+                        statusMessage.style.color = '#dc3545'; // Red for error
+                        // Optionally, you can still show an alert for more critical errors
+                        // alert('There was a problem with your submission. Please try again.');
                     }
                 })
-                .catch(error => console.error('Error submitting form:', error));
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                    statusMessage.textContent = 'Network error. Please check your connection and try again.';
+                    statusMessage.style.color = '#dc3545'; // Red for error
+                });
         });
     }
 
