@@ -42,19 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Scroll-to-Top Button ---
-    const scrollTopBtn = document.querySelector('.scroll-to-top');
-
-    const handleScroll = () => {
-        // Scroll-to-top button visibility
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
-    };
-    window.addEventListener('scroll', handleScroll);
-
     // --- Fade-in Section on Scroll ---
     const sectionsToFade = document.querySelectorAll('.fade-in-section');
     if (sectionsToFade.length > 0) {
@@ -142,6 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Note: The logic for the bottom nav active state has been removed as the bottom nav is no longer used.
+    // --- Scroll-to-Top Button ---
+    const scrollTopBtn = document.querySelector('.scroll-to-top');
+    if (scrollTopBtn) {
+        const handleScroll = () => {
+            // Scroll-to-top button visibility
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+    }
+
 
 });
