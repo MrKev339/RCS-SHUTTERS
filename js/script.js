@@ -1,20 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Custom Cursor (Desktop Only) ---
-    const cursorDot = document.querySelector('.cursor-dot');
-    // Check if it's a touch device
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-    if (cursorDot) {
-        if (!isTouchDevice) {
-            // If it's a desktop, make the cursor follow the mouse
-            window.addEventListener('mousemove', (e) => {
-                // Using transform for better performance than left/top
-                cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            });
-        } else {
-            // If it's a touch device, hide the custom cursor completely
-            cursorDot.style.display = 'none';
-        }
+    // --- GLightbox Initialization ---
+    // Initialize after the DOM is fully loaded.
+    if (typeof GLightbox === 'function') {
+        GLightbox({
+            selector: '.glightbox',
+            loop: true
+        });
     }
 
     // --- Hero Slideshow (Homepage Only) ---
@@ -114,11 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Preloader ---
     const preloader = document.querySelector('.preloader');
+    // Use DOMContentLoaded to hide the preloader as soon as the page is interactive,
+    // instead of waiting for all images to load ('load' event).
     if (preloader) {
-        window.addEventListener('load', () => {
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => preloader.remove());
-        });
+        // The preloader was blocking clicks. Hide it directly and immediately.
+        // The 'transitionend' event was not firing because no transition was defined in the CSS.
+        preloader.style.display = 'none';
     }
 
     // --- Staggered Animation for Service Page Cards ---
@@ -150,14 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sectionsToFade.forEach(section => {
             sectionObserver.observe(section);
-        });
-    }
-
-    // --- GLightbox Initialization ---
-    // Only initialize GLightbox if the function is available (meaning the script loaded)
-    if (typeof GLightbox === 'function') {
-        GLightbox({
-            selector: '.glightbox'
         });
     }
 
