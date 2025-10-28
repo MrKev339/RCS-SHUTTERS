@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Hero Slideshow ---
+    // --- Custom Cursor (Desktop Only) ---
+    const cursorDot = document.querySelector('.cursor-dot');
+    // Check if it's not a touch device before running cursor logic
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (cursorDot && !isTouchDevice) {
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+        });
+    } else if (cursorDot) {
+        cursorDot.style.display = 'none'; // Hide cursor on touch devices
+    }
+
+    // --- Hero Slideshow (Homepage Only) ---
     const slides = document.querySelectorAll('.slide');
     if (slides.length > 0) {
         let currentSlide = 0;
