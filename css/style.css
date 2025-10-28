@@ -685,6 +685,10 @@ footer p {
     .col-lg-4:nth-child(2) {
         animation-delay: 0.2s;
     }
+    /* Hide slideshow navigation buttons on mobile */
+    .slide-nav-btn {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {

@@ -20,11 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Hero Slideshow (Homepage Only) ---
     const slides = document.querySelectorAll('.slide');
     if (slides.length > 0) {
+        const heroSection = document.getElementById('hero'); // Get the hero section for touch events
         const prevBtn = document.getElementById('slide-prev');
         const nextBtn = document.getElementById('slide-next');
         let currentSlide = 0;
         const slideInterval = 5000; // Time per slide in milliseconds (5 seconds)
         let autoSlideInterval;
+        // Swipe variables
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const minSwipeDistance = 50; // Minimum pixels to register a swipe
 
         const goToSlide = (slideIndex) => {
             slides[currentSlide].classList.remove('active');
@@ -54,6 +59,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 nextSlide();
                 resetAutoSlide();
             });
+        }
+
+        // Add touch event listeners for swipe
+        if (heroSection) {
+            heroSection.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true }); // Use passive listener for better scroll performance
+
+            heroSection.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeDistance = touchEndX - touchStartX;
+                if (swipeDistance > minSwipeDistance) {
+                    prevSlide(); // Swiped right (previous slide)
+                    resetAutoSlide();
+                } else if (swipeDistance < -minSwipeDistance) {
+                    nextSlide(); // Swiped left (next slide)
+                    resetAutoSlide();
+                }
+            }, { passive: true });
         }
 
         // Start the automatic slideshow
