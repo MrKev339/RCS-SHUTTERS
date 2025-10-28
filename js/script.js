@@ -157,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         window.addEventListener('scroll', handleFooterVisibility);
         handleFooterVisibility(); // Run on page load in case the page is not scrollable
+
+        // Also run after all images have loaded to get the correct page height
+        window.addEventListener('load', handleFooterVisibility);
     }
 
 
