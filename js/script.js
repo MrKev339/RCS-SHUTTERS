@@ -21,51 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
 
-            // Get references to the button and the new status message element
-            const submitButton = this.querySelector('button[type="submit"]');
-            const statusMessage = document.getElementById('form-status-message');
-
-            // --- Provide immediate user feedback on button and new message area ---
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-            statusMessage.style.display = 'block'; // Show the message area
-            statusMessage.textContent = 'Please wait, your message is being sent...'; // Initial sending message
-            statusMessage.style.color = '#007bff'; // A neutral color for "sending"
-
             const formData = new FormData(this);
             const action = this.getAttribute('action');
 
+            // Send the form data in the background. We don't wait for a response.
             fetch(action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json' // Important for FormSubmit
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Redirect to a thank-you page on successful submission
-                        statusMessage.textContent = 'Message sent successfully! Redirecting...';
-                        statusMessage.style.color = '#28a745'; // Green for success
-                        window.location.href = 'thank-you.html';
-                    } else {
-                        // Handle errors if the submission fails
-                        // Re-enable the button and restore its text
-                        submitButton.disabled = false;
-                        submitButton.textContent = 'Send Message';
-                        statusMessage.textContent = 'There was a problem with your submission. Please try again.';
-                        statusMessage.style.color = '#dc3545'; // Red for error
-                        // Optionally, you can still show an alert for more critical errors
-                        // alert('There was a problem with your submission. Please try again.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error submitting form:', error);
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Send Message';
-                    statusMessage.textContent = 'Network error. Please check your connection and try again.';
-                    statusMessage.style.color = '#dc3545'; // Red for error
-                });
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).catch(error => {
+                // Log any errors in the console for debugging, but don't bother the user.
+                console.error('Background form submission error:', error);
+            });
+
+            // --- The "Super Fast" Part ---
+            // Redirect the user immediately without waiting for the fetch to complete.
+            window.location.href = 'thank-you.html';
         });
     }
 
