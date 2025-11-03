@@ -593,6 +593,64 @@ img {
 
 
 /* ============================
+   10. TESTIMONIALS SLIDER
+   ============================ */
+
+.testimonials-slider {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0 40px;
+    /* Add padding for pagination */
+    position: relative;
+}
+
+.testimonial-card {
+    background-color: var(--color-background-gray);
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.testimonial-rating {
+    color: #ffc107;
+    /* A standard gold/yellow color */
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    /* Adds a little space between stars */
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+}
+
+.testimonials-slider .swiper-pagination-bullet {
+    background-color: #ccc;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+}
+
+.testimonials-slider .swiper-pagination-bullet-active {
+    background-color: var(--color-primary);
+}
+
+
+/* ============================
    10. GALLERY GRID (INSTAGRAM-STYLE)
    ============================ */
 

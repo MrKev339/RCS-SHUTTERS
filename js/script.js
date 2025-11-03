@@ -123,6 +123,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Testimonials Slider (Swiper.js) ---
+    const testimonialsSlider = document.querySelector('.testimonials-slider');
+    // Only run this code if the slider exists on the page.
+    if (testimonialsSlider) {
+        new Swiper('.testimonials-slider', {
+            loop: true,
+            autoplay: {
+                delay: 5000, // 5 seconds per slide
+                disableOnInteraction: false, // Continue autoplay after user interaction
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            slidesPerView: 1, // Show one slide at a time
+            spaceBetween: 30, // Space between slides
+            grabCursor: true,
+        });
+    }
+
     // --- Preloader ---
     const preloader = document.querySelector('.preloader');
     if (preloader) {
@@ -164,24 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sectionsToFade.forEach(section => {
             sectionObserver.observe(section);
-        });
-    }
-
-    // --- Testimonials Slider (Swiper.js) ---
-    const testimonialsSlider = document.querySelector('.testimonials-slider');
-    // Only run this code if the slider exists on the page.
-    if (testimonialsSlider) {
-        // Swiper is assumed to be loaded globally
-        new Swiper('.testimonials-slider', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
         });
     }
 
