@@ -11,6 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Hero Slideshow (Homepage Only) ---
     const slides = document.querySelectorAll('.slide');
     if (slides.length > 0) {
+        // Lazy load slide backgrounds that are not active
+        const lazyLoadSlides = () => {
+            slides.forEach((slide, index) => {
+                // Skip the first slide as it's preloaded via inline style
+                if (index > 0 && slide.dataset.bg) {
+                    slide.style.backgroundImage = `url('${slide.dataset.bg}')`;
+                }
+            });
+        };
+
         const heroSection = document.getElementById('hero'); // Get the hero section for touch events
         const prevBtn = document.getElementById('slide-prev');
         const nextBtn = document.getElementById('slide-next');
@@ -73,6 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start the automatic slideshow
         startAutoSlide();
+
+        // After the page is fully loaded, lazy load the other slides
+        window.addEventListener('load', () => setTimeout(lazyLoadSlides, 500));
     }
 
     // --- Contact Form AJAX Submission ---
@@ -105,12 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Preloader ---
     const preloader = document.querySelector('.preloader');
-    // Use DOMContentLoaded to hide the preloader as soon as the page is interactive,
-    // instead of waiting for all images to load ('load' event).
     if (preloader) {
-        // The preloader was blocking clicks. Hide it directly and immediately.
-        // The 'transitionend' event was not firing because no transition was defined in the CSS.
-        preloader.style.display = 'none';
+        window.addEventListener('load', () => {
+            preloader.classList.add('fade-out');
+            // Remove the preloader from the DOM after the transition ends
+            preloader.addEventListener('transitionend', () => {
+                preloader.style.display = 'none';
+            });
+        });
     }
 
     // --- Staggered Animation for Service Page Cards ---
