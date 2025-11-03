@@ -254,4 +254,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
+    // --- WhatsApp Widget ---
+    const whatsappTrigger = document.getElementById('whatsapp-trigger');
+    const whatsappWidget = document.getElementById('whatsapp-widget');
+    const whatsappCloseBtn = document.getElementById('whatsapp-widget-close');
+
+    if (whatsappTrigger && whatsappWidget && whatsappCloseBtn) {
+        whatsappTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            whatsappWidget.classList.toggle('visible');
+        });
+
+        whatsappCloseBtn.addEventListener('click', () => {
+            whatsappWidget.classList.remove('visible');
+        });
+    }
 });

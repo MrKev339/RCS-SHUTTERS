@@ -1,926 +1,1091 @@
-            /* ============================
+/* ============================
    2. CSS VARIABLES (CUSTOM PROPERTIES)
    ============================ */
-            
-             :root {
-                --color-primary: #1A1E1D;
-                /* Dark Charcoal */
-                --color-background: #FFFFFF;
-                /* White */
-                --color-background-gray: #f4f4f4;
-                /* Light Gray */
-                --color-text: #333333;
-                --color-text-light: #FFFFFF;
-                --font-heading: 'Poppins', sans-serif;
-                --font-body: 'Lato', sans-serif;
-                --header-height: 90px;
-                /* Reverted to a standard header height */
-            }
-            /* ============================
+
+:root {
+    --color-primary: #1A1E1D;
+    /* Dark Charcoal */
+    --color-background: #FFFFFF;
+    /* White */
+    --color-background-gray: #f4f4f4;
+    /* Light Gray */
+    --color-text: #333333;
+    --color-text-light: #FFFFFF;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Lato', sans-serif;
+    --header-height: 90px;
+    /* Reverted to a standard header height */
+}
+
+
+/* ============================
    3. GLOBAL & RESET STYLES
    ============================ */
-            
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            
-            html {
-                scroll-behavior: smooth;
-                font-size: 16px;
-            }
-            
-            body {
-                font-family: var(--font-body);
-                background-color: var(--color-background);
-                color: var(--color-text);
-                line-height: 1.6;
-                padding-top: var(--header-height);
-                /* Flexbox properties for sticky footer */
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
-            /* Make the main content area grow to fill available space */
-            
-            main {
-                flex-grow: 1;
-            }
-            
-            h1,
-            h2,
-            h3 {
-                line-height: 1.2;
-                margin-bottom: 1rem;
-                font-weight: 600;
-                font-family: var(--font-heading);
-                color: var(--color-primary);
-            }
-            
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-                text-align: center;
-                margin-bottom: 2.5rem;
-            }
-            
-            h3 {
-                font-size: 1.25rem;
-            }
-            
-            a {
-                text-decoration: none;
-                color: var(--color-primary);
-                transition: color 0.3s ease;
-            }
-            
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-            
-            .container {
-                max-width: 1200px;
-                /* Increased base max-width for larger default screens */
-                margin: 0 auto;
-                padding: 0 20px;
-            }
-            
-            .content-section {
-                padding: 80px 0;
-            }
-            
-            .content-section-gray {
-                background-color: var(--color-background-gray);
-                padding: 80px 0;
-            }
-            /* Styles for scroll animation */
-            
-            .fade-in-section {
-                opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            }
-            
-            .fade-in-section.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            /* ============================
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    /* Flexbox properties for sticky footer */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* Make the main content area grow to fill available space */
+
+main {
+    flex-grow: 1;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+}
+
+h1 {
+    font-size: 2.8rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1200px;
+    /* Increased base max-width for larger default screens */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-section {
+    padding: 80px 0;
+}
+
+.content-section-gray {
+    background-color: var(--color-background-gray);
+    padding: 80px 0;
+}
+
+
+/* Styles for scroll animation */
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ============================
    4. BUTTONS
    ============================ */
-            
-            .btn-secondary {
-                display: inline-block;
-                padding: 10px 20px;
-                border: 2px solid var(--color-primary);
-                color: var(--color-primary);
-                background-color: transparent;
-                text-transform: uppercase;
-                font-size: 0.9rem;
-                font-weight: 600;
-                transition: all 0.3s ease;
-            }
-            
-            .btn-secondary:hover {
-                background-color: var(--color-primary);
-                color: var(--color-text-light);
-            }
-            /* ============================
+
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+
+/* ============================
    5. HEADER & NAVIGATION
    ============================ */
-            
-            .navbar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: var(--header-height);
-                padding: 0 30px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background-color: var(--color-background);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                z-index: 100;
-                transition: transform 0.4s ease, height 0.4s ease;
-            }
-            /* Class to hide the navbar on scroll-down (mobile) */
-            
-            .navbar-hidden {
-                transform: translateY(-100%);
-            }
-            
-            .nav-logo {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-            
-            .nav-logo img {
-                height: 50px;
-                /* Adjust logo icon size */
-                width: auto;
-                display: block;
-            }
-            
-            .nav-logo-text {
-                display: flex;
-                flex-direction: column;
-                line-height: 1.2;
-                font-family: var(--font-heading);
-                font-weight: 700;
-                font-size: 1.2rem;
-                color: var(--color-primary);
-            }
-            
-            .nav-menu {
-                display: flex;
-                align-items: center;
-                list-style: none;
-                gap: 2rem;
-            }
-            
-            .nav-link {
-                font-weight: 500;
-                transition: color 0.3s ease, transform 0.3s ease;
-            }
-            
-            .nav-link:hover {
-                color: #888;
-            }
-            /* Dropdown Styles */
-            
-            .has-dropdown {
-                position: relative;
-            }
-            
-            .dropdown-arrow {
-                font-size: 0.7rem;
-                display: inline-block;
-                transition: transform 0.4s ease;
-                margin-left: 4px;
-            }
-            
-            .mega-menu {
-                display: none;
-                position: absolute;
-                top: 90%;
-                /* Position it slightly overlapping for a modern feel */
-                left: 50%;
-                transform: translateX(-50%);
-                padding-top: 10px;
-                min-width: 220px;
-                /* Set a minimum width for the block */
-            }
-            
-            .mega-menu-inner {
-                background-color: var(--color-background);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                padding: 0.5rem;
-                border-radius: 8px;
-            }
-            
-            .mega-menu-list {
-                list-style: none;
-                display: block;
-                padding: 0;
-            }
-            
-            .has-dropdown:hover .mega-menu {
-                display: block;
-            }
-            
-            .mega-menu-list li a {
-                display: block;
-                padding: 0.75rem 1.5rem;
-                font-weight: 600;
-                border-radius: 4px;
-                transition: background-color 0.3s ease;
-            }
-            
-            .bar {
-                display: block;
-                width: 25px;
-                height: 3px;
-                margin: 5px auto;
-                background-color: var(--color-primary);
-                transition: all 0.3s ease-in-out;
-            }
-            /* Hamburger Menu Trigger */
-            
-            .menu-trigger {
-                display: none;
-                /* Hidden by default */
-                cursor: pointer;
-                background: transparent;
-                border: none;
-                padding: 0;
-                z-index: 1051;
-                /* Above side-nav overlay */
-            }
-            /* ============================
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: transform 0.4s ease, height 0.4s ease;
+}
+
+
+/* Class to hide the navbar on scroll-down (mobile) */
+
+.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo img {
+    height: 50px;
+    /* Adjust logo icon size */
+    width: auto;
+    display: block;
+}
+
+.nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #888;
+}
+
+
+/* Dropdown Styles */
+
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    display: inline-block;
+    transition: transform 0.4s ease;
+    margin-left: 4px;
+}
+
+.mega-menu {
+    display: none;
+    position: absolute;
+    top: 90%;
+    /* Position it slightly overlapping for a modern feel */
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 10px;
+    min-width: 220px;
+    /* Set a minimum width for the block */
+}
+
+.mega-menu-inner {
+    background-color: var(--color-background);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.mega-menu-list {
+    list-style: none;
+    display: block;
+    padding: 0;
+}
+
+.has-dropdown:hover .mega-menu {
+    display: block;
+}
+
+.mega-menu-list li a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Hamburger Menu Trigger */
+
+.menu-trigger {
+    display: none;
+    /* Hidden by default */
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    z-index: 1051;
+    /* Above side-nav overlay */
+}
+
+
+/* ============================
    6. HERO SLIDESHOW
    ============================ */
-            
-            #hero {
-                height: 80vh;
-                position: relative;
-                overflow: hidden;
-                max-width: 1800px;
-                margin: 2rem auto;
-                border-radius: 12px;
-            }
-            
-            .slide {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-size: cover;
-                background-position: center;
-                opacity: 0;
-                transition: opacity 1s ease-in-out;
-            }
-            
-            .slide.active {
-                opacity: 1;
-            }
-            
-            .hero-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-            }
-            
-            .hero-content {
-                position: relative;
-                z-index: 2;
-                color: var(--color-text-light);
-                text-align: center;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 0 20px;
-            }
-            
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            
-            .hero-content h1 {
-                color: var(--color-text-light);
-                animation: fadeInUp 0.8s ease-out 0.5s both;
-            }
-            
-            .hero-content h1 {
-                color: var(--color-text-light);
-                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-                /* Makes text more readable */
-                animation: fadeInUp 0.8s ease-out 0.5s both;
-            }
-            
-            .hero-content p {
-                font-size: 1.2rem;
-                animation: fadeInUp 0.8s ease-out 0.8s both;
-            }
-            /* Slideshow Navigation Buttons */
-            
-            .slide-nav-btn {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background-color: rgba(0, 0, 0, 0.4);
-                color: white;
-                border: none;
-                border-radius: 50%;
-                width: 45px;
-                height: 45px;
-                font-size: 1.5rem;
-                cursor: pointer;
-                z-index: 10;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: background-color 0.3s ease;
-            }
-            
-            .slide-nav-btn:hover {
-                background-color: rgba(0, 0, 0, 0.7);
-            }
-            
-            .slide-nav-btn.prev {
-                left: 20px;
-            }
-            
-            .slide-nav-btn.next {
-                right: 20px;
-            }
-            /* Gradient Text Effect */
-            
-            .gradient-text {
-                background: linear-gradient(45deg, var(--color-primary), #555);
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            /* ============================
+
+#hero {
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+    max-width: 1800px;
+    margin: 2rem auto;
+    border-radius: 12px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--color-text-light);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content h1 {
+    color: var(--color-text-light);
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.hero-content h1 {
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    /* Makes text more readable */
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+
+/* Slideshow Navigation Buttons */
+
+.slide-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.slide-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.slide-nav-btn.prev {
+    left: 20px;
+}
+
+.slide-nav-btn.next {
+    right: 20px;
+}
+
+
+/* Gradient Text Effect */
+
+.gradient-text {
+    background: linear-gradient(45deg, var(--color-primary), #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ============================
    SERVICES PAGE HERO
    ============================ */
-            
-            #services-hero {
-                position: relative;
-                min-height: 60vh;
-                background-image: url('../images/Services%20Page%20Hero%20section/Services%20Page%20Hero%20section.avif');
-                background-size: cover;
-                background-position: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 40px 20px;
-            }
-            
-            #services-hero .hero-content {
-                background-color: rgba(255, 255, 255, 0.4);
-                -webkit-backdrop-filter: blur(12px);
-                backdrop-filter: blur(12px);
-                padding: 40px;
-                border-radius: 8px;
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                max-width: 700px;
-                text-align: center;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            }
-            
-            #services-hero .hero-content h2 {
-                color: var(--color-primary);
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                font-size: clamp(1.5rem, 4vw, 2rem);
-            }
-            
-            #services-hero .hero-content p {
-                font-size: 1.1rem;
-                line-height: 1.7;
-                color: #222;
-                margin-bottom: 0;
-            }
-            
-            .contact-info .contact-link {
-                display: inline-block;
-                padding: 5px 0;
-                /* Add vertical padding to increase tap area */
-            }
-            /* ============================
+
+#services-hero {
+    position: relative;
+    min-height: 60vh;
+    background-image: url('../images/Services%20Page%20Hero%20section/Services%20Page%20Hero%20section.avif');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+#services-hero .hero-content {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+#services-hero .hero-content h2 {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+#services-hero .hero-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #222;
+    margin-bottom: 0;
+}
+
+.contact-info .contact-link {
+    display: inline-block;
+    padding: 5px 0;
+    /* Add vertical padding to increase tap area */
+}
+
+
+/* ============================
    7. ABOUT & SERVICES SECTIONS
    ============================ */
-            
-            #about p {
-                text-align: center;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-            
-            #contact a {
-                color: var(--color-primary);
-                text-decoration: underline;
-            }
-            
-            .service-icon {
-                font-size: 2.5rem;
-                color: var(--color-primary);
-                line-height: 1;
-            }
-            
-            .service-icon i {
-                vertical-align: middle;
-            }
-            
-            .contact-info a {
-                color: var(--color-primary);
-                text-decoration: none;
-            }
-            
-            .service-page-card {
-                overflow: hidden;
-                /* Important for image zoom effect */
-            }
-            
-            .service-page-card .card-img-top {
-                aspect-ratio: 16 / 10;
-                object-fit: cover;
-                transition: transform 0.4s ease;
-            }
-            
-            .service-page-card:hover .card-img-top {
-                transform: scale(1.05);
-            }
-            
-            .service-image-card {
-                overflow: hidden;
-                /* Ensures image corners are rounded */
-                border: none;
-            }
-            
-            .service-image-card .card-img {
-                aspect-ratio: 4 / 3;
-                /* Creates a proportional height */
-                object-fit: cover;
-                /* Ensures images fill the space without distortion */
-                transition: transform 0.4s ease;
-            }
-            
-            .card:hover .service-image-card .card-img {
-                transform: scale(1.05);
-            }
-            /* ============================
+
+#about p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#contact a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.service-icon i {
+    vertical-align: middle;
+}
+
+.contact-info a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.service-page-card {
+    overflow: hidden;
+    /* Important for image zoom effect */
+}
+
+.service-page-card .card-img-top {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.service-page-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.service-image-card {
+    overflow: hidden;
+    /* Ensures image corners are rounded */
+    border: none;
+}
+
+.service-image-card .card-img {
+    aspect-ratio: 4 / 3;
+    /* Creates a proportional height */
+    object-fit: cover;
+    /* Ensures images fill the space without distortion */
+    transition: transform 0.4s ease;
+}
+
+.service-image-card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.service-image-card .btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.service-image-card:hover .btn {
+    background-color: #343a40;
+    /* Slightly lighter than btn-dark */
+    transform: translateY(-4px);
+}
+
+
+/* ============================
    10. GALLERY GRID (INSTAGRAM-STYLE)
    ============================ */
-            
-            .gallery-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                /* Mobile-first: 2 columns */
-                gap: 15px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            
-            .gallery-item {
-                aspect-ratio: 1 / 1;
-                overflow: hidden;
-                position: relative;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-            
-            .gallery-item a {
-                display: block;
-                width: 100%;
-                height: 100%;
-            }
-            
-            .gallery-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.4s ease;
-                display: block;
-            }
-            
-            a.glightbox:hover img {
-                transform: scale(1.05);
-            }
-            
-            .gallery-item::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2));
-                background-size: 200% 200%;
-                opacity: 0;
-                transition: opacity 0.5s ease;
-                animation: gradient-animation 4s ease infinite;
-                pointer-events: none;
-                /* CRITICAL FIX: Allows clicks to pass through the hover effect. */
-            }
-            
-            .gallery-item:hover::after {
-                opacity: 1;
-            }
-            /* ============================
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Mobile-first: 2 columns */
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+a.glightbox:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2));
+    background-size: 200% 200%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: gradient-animation 4s ease infinite;
+    pointer-events: none;
+    /* CRITICAL FIX: Allows clicks to pass through the hover effect. */
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+
+/* ============================
    8. ENHANCED BOOTSTRAP COMPONENTS
    ============================ */
-            
-            .card {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            
-            .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
-            }
-            
-            .btn-dark:active {
-                transform: scale(0.98);
-            }
-            
-            .form-control:focus {
-                border-color: var(--color-primary);
-                box-shadow: 0 0 0 0.25rem rgba(26, 30, 29, 0.25);
-            }
-            /* ============================
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+.btn-dark:active {
+    transform: scale(0.98);
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.25rem rgba(26, 30, 29, 0.25);
+}
+
+
+/* ============================
    9. SCROLL TO TOP BUTTON
    ============================ */
-            
-            .scroll-to-top {
-                position: fixed;
-                bottom: 20px;
-                /* Reverted to original position */
-                right: 20px;
-                background-color: var(--color-primary);
-                color: var(--color-text-light);
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-decoration: none;
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.3s ease, visibility 0.3s ease;
-                z-index: 100;
-            }
-            
-            .scroll-to-top.visible {
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            @keyframes gradient-animation {
-                0% {
-                    background-position: 0% 50%;
-                }
-                50% {
-                    background-position: 100% 50%;
-                }
-                100% {
-                    background-position: 0% 50%;
-                }
-            }
-            
-            .arrow-up {
-                border: solid var(--color-text-light);
-                border-width: 0 3px 3px 0;
-                display: inline-block;
-                padding: 4px;
-                transform: rotate(-135deg);
-                margin-top: 5px;
-            }
-            /* ============================
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 90px;
+    /* Move up to sit above the WhatsApp icon */
+    right: 20px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 100;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top i {
+    font-size: 1.5rem;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.arrow-up {
+    border: solid var(--color-text-light);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(-135deg);
+    margin-top: 5px;
+}
+
+
+/* ============================
    8. FOOTER
    ============================ */
-            
-            footer {
-                background-color: var(--color-primary);
-                color: var(--color-text-light);
-                text-align: center;
-                padding: 2rem 20px;
-                font-size: 0.9rem;
-                /* New styles for scroll-reveal effect */
-                opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 0.5s ease, transform 0.5s ease;
-            }
-            
-            footer.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            footer a {
-                color: var(--color-text-light);
-                text-decoration: underline;
-            }
-            
-            footer a:hover {
-                text-decoration: none;
-            }
-            
-            footer p {
-                margin-bottom: 0.5rem;
-            }
-            /* ============================
-   11. FLOATING WHATSAPP ICON
-   ============================ */
-            
-            .whatsapp-float {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background-color: #25D366;
-                color: #FFF;
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-                z-index: 100;
-                transition: transform 0.3s ease;
-                animation: pulse 2s infinite;
-            }
-            
-            .whatsapp-float:hover {
-                transform: scale(1.1);
-                color: #FFF;
-                animation-play-state: paused;
-                /* Pause animation on hover */
-            }
-            
-            @keyframes pulse {
-                0% {
-                    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-                }
-                70% {
-                    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-                }
-                100% {
-                    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-                }
-            }
-            /* ============================
+
+footer {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: 2rem 20px;
+    font-size: 0.9rem;
+    /* New styles for scroll-reveal effect */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer a {
+    color: var(--color-text-light);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+
+/* ============================
    9. RESPONSIVE - TABLET & MOBILE
    ============================ */
-            
-            @media (max-width: 768px) {
-                #services .col-lg-4 {
-                    margin-bottom: 2rem !important;
-                    /* Reduce space between stacked service cards */
-                }
-                .services-page-card {
-                    margin-bottom: 1.5rem !important;
-                    /* Reduce space on services page */
-                }
-                .contact-info {
-                    font-size: 1.1rem;
-                    /* Make contact info slightly larger on mobile */
-                }
-            }
-            /* Tablet and Mobile styles: Show mobile navigation, hide desktop navigation */
-            
-            @media (max-width: 992px) {
-                .nav-menu {
-                    display: none;
-                }
-                .menu-trigger {
-                    display: block;
-                }
-                .gallery-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                    /* 3 columns for tablets */
-                }
-                /* Staggered animation for service cards */
-                .col-lg-4:nth-child(1) {
-                    animation-delay: 0.1s;
-                }
-                .col-lg-4:nth-child(2) {
-                    animation-delay: 0.2s;
-                }
-                /* Hide slideshow navigation buttons on mobile */
-                .slide-nav-btn {
-                    display: none;
-                }
-                /* Ensure the 3-column layout for services cards on tablets */
-                #services .row {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
-            }
-            
-            @media (max-width: 768px) {
-                .gallery-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                body {
-                    line-height: 1.7;
-                    /* Increase line-height for better readability on mobile */
-                }
-                .content-section {
-                    padding: 60px 0;
-                }
-                .content-section-gray {
-                    padding: 60px 0;
-                }
-                .navbar {
-                    padding: 0 20px;
-                }
-                #hero {
-                    height: 65vh;
-                    /* Reduce hero height on mobile */
-                }
-                h1 {
-                    font-size: clamp(1.8rem, 6vw + 0.5rem, 2.4rem);
-                    /* Refined fluid heading size */
-                }
-                h2 {
-                    font-size: clamp(1.5rem, 5vw + 0.5rem, 2rem);
-                    /* Refined fluid heading size */
-                }
-                h3 {
-                    font-size: 1.15rem;
-                }
-            }
-            /* ============================
+
+@media (max-width: 768px) {
+    #services .col-lg-4 {
+        margin-bottom: 2rem !important;
+        /* Reduce space between stacked service cards */
+    }
+    .services-page-card {
+        margin-bottom: 1.5rem !important;
+        /* Reduce space on services page */
+    }
+    .contact-info {
+        font-size: 1.1rem;
+        /* Make contact info slightly larger on mobile */
+    }
+}
+
+
+/* Tablet and Mobile styles: Show mobile navigation, hide desktop navigation */
+
+@media (max-width: 992px) {
+    .nav-menu {
+        display: none;
+    }
+    .menu-trigger {
+        display: block;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 columns for tablets */
+    }
+    /* Staggered animation for service cards */
+    .col-lg-4:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .col-lg-4:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    /* Hide slideshow navigation buttons on mobile */
+    .slide-nav-btn {
+        display: none;
+    }
+    /* Ensure the 3-column layout for services cards on tablets */
+    #services .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    body {
+        line-height: 1.7;
+        /* Increase line-height for better readability on mobile */
+    }
+    .content-section {
+        padding: 60px 0;
+    }
+    .content-section-gray {
+        padding: 60px 0;
+    }
+    .navbar {
+        padding: 0 20px;
+    }
+    #hero {
+        height: 65vh;
+        /* Reduce hero height on mobile */
+    }
+    h1 {
+        font-size: clamp(1.8rem, 6vw + 0.5rem, 2.4rem);
+        /* Refined fluid heading size */
+    }
+    h2 {
+        font-size: clamp(1.5rem, 5vw + 0.5rem, 2rem);
+        /* Refined fluid heading size */
+    }
+    h3 {
+        font-size: 1.15rem;
+    }
+}
+
+
+/* ============================
    10. RESPONSIVE - LARGE & ULTRA-LARGE SCREENS
    ============================ */
-            /* For large desktops (e.g., 1440p) */
-            
-            @media (min-width: 1400px) {
-                .container {
-                    max-width: 1320px;
-                    /* Widen the container */
-                }
-                .gallery-grid {
-                    grid-template-columns: repeat(4, 1fr);
-                    /* Show 4 columns in gallery */
-                }
-            }
-            /* For extra-large desktops (e.g., 4K monitors) */
-            
-            @media (min-width: 1920px) {
-                html {
-                    font-size: 17px;
-                    /* Slightly increase base font size for better readability */
-                }
-                .container {
-                    max-width: 1600px;
-                    /* Further widen the container */
-                }
-                .gallery-grid {
-                    grid-template-columns: repeat(5, 1fr);
-                    /* Show 5 columns in gallery */
-                }
-            }
-            /* ============================
+
+
+/* For large desktops (e.g., 1440p) */
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+        /* Widen the container */
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        /* Show 4 columns in gallery */
+    }
+}
+
+
+/* For extra-large desktops (e.g., 4K monitors) */
+
+@media (min-width: 1920px) {
+    html {
+        font-size: 17px;
+        /* Slightly increase base font size for better readability */
+    }
+    .container {
+        max-width: 1600px;
+        /* Further widen the container */
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(5, 1fr);
+        /* Show 5 columns in gallery */
+    }
+}
+
+
+/* ============================
+   11. FLOATING WHATSAPP ICON
+   ============================ */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: #FFF;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: #FFF;
+    animation-play-state: paused;
+    /* Pause animation on hover */
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+
+/* ============================
+   12. WHATSAPP WIDGET
+   ============================ */
+
+.whatsapp-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 350px;
+    max-width: calc(100vw - 40px);
+    background-color: var(--color-background);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 101;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.whatsapp-widget.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.whatsapp-widget-header {
+    background-color: #075E54;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.whatsapp-widget-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.whatsapp-widget-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+}
+
+.whatsapp-widget-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.whatsapp-widget-name {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.whatsapp-widget-status {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.whatsapp-widget-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.whatsapp-widget-body {
+    padding: 1.5rem 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e5ddd5' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 400V0h400v400H0zM192.5 392.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.whatsapp-widget-message {
+    background-color: #E1F5FE;
+    padding: 0.75rem 1rem;
+    border-radius: 10px 10px 10px 0;
+    max-width: 80%;
+    line-height: 1.4;
+}
+
+.whatsapp-widget-footer {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    color: #075E54;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-widget-footer:hover {
+    background-color: #e0e0e0;
+    color: #075E54;
+}
+
+
+/* ============================
    14. SINGLE COLUMN GALLERY
    ============================ */
-            
-            .single-column-gallery {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-            }
-            
-            .single-column-gallery img {
-                max-width: 80%;
-                height: auto;
-                border-radius: 8px;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            }
-            /* ============================
+
+.single-column-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.single-column-gallery img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ============================
    16. SIDE NAVIGATION PANEL (MOBILE)
    ============================ */
-            
-            .side-nav-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 1040;
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.3s ease, visibility 0.3s ease;
-            }
-            
-            .side-nav-overlay.visible {
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .side-nav {
-                position: fixed;
-                top: 0;
-                right: -300px;
-                /* Start off-screen. Use transform for smoother animation. */
-                transform: translateX(100%);
-                width: min(300px, 80vw);
-                /* Responsive width: 80% of viewport, max 300px */
-                height: 100%;
-                background-color: var(--color-background);
-                box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
-                z-index: 1050;
-                padding: calc(var(--header-height) + 20px) 20px 20px;
-                transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-                overflow-y: auto;
-            }
-            
-            .side-nav.visible {
-                transform: translateX(0);
-            }
-            
-            .side-nav ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            
-            .side-nav li a {
-                display: block;
-                padding: 0.8rem 1rem;
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: var(--color-text);
-                border-radius: 8px;
-                transition: background-color 0.3s ease;
-            }
-            
-            .side-nav li a:hover {
-                background-color: var(--color-background-gray);
-            }
-            
-            .side-nav .side-nav-gallery-title {
-                padding: 1.5rem 1rem 0.5rem;
-                font-size: 0.9rem;
-                font-weight: 700;
-                color: #888;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-            
-            .side-nav .sub-link {
-                padding-left: 2rem;
-                font-size: 1rem;
-                font-weight: 400;
-            }
-            /* Animate hamburger icon to an 'X' */
-            
-            .menu-trigger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-            
-            .menu-trigger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .menu-trigger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-            
-            menu-trigger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-            /* Further refinement for very small screens */
-            
-            @media (max-width: 400px) {
-                .nav-logo-text {
-                    font-size: 1.05rem;
-                    /* Reduce logo text size on very small screens */
-                }
-            }
+
+.side-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.side-nav-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-nav {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    /* Start off-screen. Use transform for smoother animation. */
+    transform: translateX(100%);
+    width: min(300px, 80vw);
+    /* Responsive width: 80% of viewport, max 300px */
+    height: 100%;
+    background-color: var(--color-background);
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    padding: calc(var(--header-height) + 20px) 20px 20px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow-y: auto;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-nav li a {
+    display: block;
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.side-nav li a:hover {
+    background-color: var(--color-background-gray);
+}
+
+.side-nav .side-nav-gallery-title {
+    padding: 1.5rem 1rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.side-nav .sub-link {
+    padding-left: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+
+/* Animate hamburger icon to an 'X' */
+
+.menu-trigger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-trigger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-trigger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* Further refinement for very small screens */
+
+@media (max-width: 400px) {
+    .nav-logo-text {
+        font-size: 1.05rem;
+        /* Reduce logo text size on very small screens */
+    }
+}
