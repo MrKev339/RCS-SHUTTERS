@@ -98,23 +98,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
             const statusMessage = document.getElementById('form-status-message');
 
-            // Show a "sending" message
-            if (statusMessage) statusMessage.innerHTML = 'Sending...';
-            if (statusMessage) statusMessage.style.display = 'block';
+            // Check if the form is valid using the browser's built-in validation
+            if (!form.checkValidity()) {
+                // If the form is invalid, show the validation messages and stop.
+                // The browser will automatically display error popups on the required fields.
+                form.reportValidity();
+            } else {
+                // If the form is valid, proceed with the submission.
+                // Show a "sending" message
+                if (statusMessage) statusMessage.innerHTML = 'Sending...';
+                if (statusMessage) statusMessage.style.display = 'block';
 
-            fetch(form.action, {
-                method: 'POST',
-                // Pass the FormData object directly. The browser will set the
-                // correct 'Content-Type: multipart/form-data' header.
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Important for FormSubmit.co to send a JSON response
-                }
-            }); // The form data is sent in the background.
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }); // The form data is sent in the background.
 
-            // Immediately redirect to the thank you page as requested.
-            // The form submission will continue to process in the background.
-            window.location.href = 'thank-you.html';
+                // Immediately redirect to the thank you page.
+                window.location.href = 'thank-you.html';
+            }
         });
     }
 
