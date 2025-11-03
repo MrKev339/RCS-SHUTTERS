@@ -529,6 +529,70 @@ img {
 
 
 /* ============================
+   OUR PROCESS SECTION
+   ============================ */
+
+.process-wrapper {
+    position: relative;
+}
+
+.process-step {
+    position: relative;
+    padding: 0 20px;
+}
+
+.process-icon-wrapper {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--color-background-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid #e0e0e0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.process-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+}
+
+.process-step:hover .process-icon-wrapper {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.process-step:hover .process-icon {
+    color: var(--color-background);
+}
+
+
+/* Connecting lines for desktop view */
+
+@media (min-width: 992px) {
+    .process-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 45px;
+        /* Vertically center with the icon */
+        right: -50%;
+        width: 100%;
+        height: 2px;
+        background-color: #e0e0e0;
+        z-index: -1;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .process-step {
+        margin-bottom: 2.5rem;
+    }
+}
+
+
+/* ============================
    10. GALLERY GRID (INSTAGRAM-STYLE)
    ============================ */
 
