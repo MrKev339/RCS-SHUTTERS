@@ -94,24 +94,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
+            const form = this;
+            const formData = new FormData(form);
+            const statusMessage = document.getElementById('form-status-message');
 
-            const formData = new FormData(this);
-            const action = this.getAttribute('action');
+            // Show a "sending" message
+            if (statusMessage) statusMessage.innerHTML = 'Sending...';
+            if (statusMessage) statusMessage.style.display = 'block';
 
-            // Send the form data in the background. We don't wait for a response.
-            fetch(action, {
+            fetch(form.action, {
                 method: 'POST',
+                // Pass the FormData object directly. The browser will set the
+                // correct 'Content-Type: multipart/form-data' header.
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json' // Important for FormSubmit.co to send a JSON response
                 }
-            }).catch(error => {
-                // Log any errors in the console for debugging, but don't bother the user.
-                console.error('Background form submission error:', error);
-            });
+            }); // The form data is sent in the background.
 
-            // --- The "Super Fast" Part ---
-            // Redirect the user immediately without waiting for the fetch to complete.
+            // Immediately redirect to the thank you page as requested.
+            // The form submission will continue to process in the background.
             window.location.href = 'thank-you.html';
         });
     }
