@@ -163,6 +163,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Services Slider (Swiper.js) ---
+    const servicesSlider = document.querySelector('.services-slider');
+    if (servicesSlider) {
+        new Swiper('.services-slider', {
+            // Mobile-first configuration
+            slidesPerView: 1.2,
+            spaceBetween: 15,
+            centeredSlides: true,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.services-pagination',
+                clickable: true,
+            },
+            // Breakpoints for larger screens
+            breakpoints: {
+                // When window width is >= 992px, disable swiper and show as grid
+                992: {
+                    enabled: false,
+                    slidesPerView: 3,
+                    spaceBetween: 0,
+                }
+            }
+        });
+    }
+
     // --- Side Navigation (Hamburger Menu) ---
     const menuTrigger = document.getElementById('menu-trigger');
     const sideNav = document.getElementById('side-nav');
