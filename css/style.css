@@ -491,20 +491,6 @@ img {
     transform: scale(1.05);
 }
 
-.services-slider .swiper-slide {
-    /* On desktop, when swiper is disabled, this makes them act like grid columns */
-    width: 33.33%;
-    padding: 0 15px;
-    margin-bottom: 3rem;
-}
-
-.services-pagination {
-    position: static;
-    /* Override swiper's absolute positioning */
-    margin-top: 1rem;
-    /* Add space between slider and dots */
-}
-
 
 /* ============================
    10. GALLERY GRID (INSTAGRAM-STYLE)
@@ -688,13 +674,6 @@ footer p {
         margin-bottom: 1.5rem !important;
         /* Reduce space on services page */
     }
-    .services-slider .swiper-slide {
-        /* On mobile, let swiper control the width */
-        width: auto;
-    }
-    .services-pagination {
-        display: block;
-    }
     .contact-info {
         font-size: 1.1rem;
         /* Make contact info slightly larger on mobile */
@@ -724,10 +703,6 @@ footer p {
     }
     /* Hide slideshow navigation buttons on mobile */
     .slide-nav-btn {
-        display: none;
-    }
-    .services-pagination {
-        /* Hide pagination on desktop */
         display: none;
     }
 }
