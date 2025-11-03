@@ -14,7 +14,7 @@
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Lato', sans-serif;
     --header-height: 90px;
-    /* Increased initial height */
+    /* Reverted to a standard header height */
 }
 
 
@@ -154,6 +154,14 @@ img {
     font-weight: 700;
     color: var(--color-primary);
     transition: font-size 0.4s ease;
+}
+
+.nav-logo img {
+    height: var(--header-height);
+    /* Make logo height fit the header */
+    width: auto;
+    transition: max-height 0.4s ease;
+    display: block;
 }
 
 .nav-menu {
