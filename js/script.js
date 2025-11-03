@@ -230,4 +230,28 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', handleFooterVisibility);
         handleFooterVisibility(); // Call once on load to set initial state
     }
+
+    // --- Hide Header on Scroll (Mobile) ---
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        let lastScrollTop = 0;
+        const headerHeight = navbar.offsetHeight;
+
+        window.addEventListener('scroll', () => {
+            // Only apply this behavior on mobile/tablet
+            if (window.innerWidth <= 992) {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
+                    // Scrolling Down
+                    navbar.classList.add('navbar-hidden');
+                } else {
+                    // Scrolling Up
+                    navbar.classList.remove('navbar-hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }
+        }, { passive: true });
+    }
+
 });
