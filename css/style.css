@@ -1080,8 +1080,8 @@ footer p {
 .side-nav {
     position: fixed;
     top: 0;
-    right: -300px;
-    /* Start off-screen. Use transform for smoother animation. */
+    right: 0;
+    /* Set to 0 and let transform handle positioning */
     transform: translateX(100%);
     width: min(300px, 80vw);
     /* Responsive width: 80% of viewport, max 300px */
@@ -1092,6 +1092,10 @@ footer p {
     padding: calc(var(--header-height) + 20px) 20px 20px;
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow-y: auto;
+}
+
+.side-nav.visible {
+    transform: translateX(0);
 }
 
 .side-nav ul {
