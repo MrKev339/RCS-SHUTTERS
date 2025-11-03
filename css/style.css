@@ -421,6 +421,12 @@ img {
     margin-bottom: 0;
 }
 
+.contact-info .contact-link {
+    display: inline-block;
+    padding: 5px 0;
+    /* Add vertical padding to increase tap area */
+}
+
 
 /* ============================
    7. ABOUT & SERVICES SECTIONS
@@ -720,28 +726,9 @@ footer p {
     .navbar {
         padding: 0 20px;
     }
-    /* Make footer fixed and visible on scroll for mobile */
-    body {
-        padding-bottom: 80px;
-        /* Add padding to prevent footer from overlapping content */
-    }
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 1rem 20px;
-        /* Adjust padding for fixed view */
-        z-index: 99;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        /* Start hidden and off-screen */
-        opacity: 0;
-        transform: translateY(100%);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    footer.visible {
-        transform: translateY(0);
-        /* Slide into view */
+    #hero {
+        height: 65vh;
+        /* Reduce hero height on mobile */
     }
 }
 
